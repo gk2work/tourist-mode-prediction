@@ -337,16 +337,50 @@
   to   { opacity: 1; transform: translateY(0); }
 }
 
+.results-topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
 .match-banner {
   display: flex;
   align-items: center;
-  justify-content: center;
+  flex: 1;
   gap: 8px;
   padding: 10px 16px;
   background: rgba(99, 102, 241, 0.07);
   border: 1px solid rgba(99, 102, 241, 0.18);
   border-radius: 8px;
-  margin-bottom: 14px;
+}
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: var(--radius-md);
+  border: 1.5px solid rgba(99, 102, 241, 0.35);
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--accent-text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  font-family: var(--font-sans);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-download:hover {
+  background: rgba(99, 102, 241, 0.18);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.btn-download:active {
+  transform: translateY(0);
 }
 
 .match-dot {

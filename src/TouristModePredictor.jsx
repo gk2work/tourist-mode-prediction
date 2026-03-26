@@ -103,6 +103,17 @@ export default function App() {
     setShowResult(false);
   };
 
+  const handleDownload = async () => {
+    if (!result) return;
+    const { generateReport } = await import("./generateReport");
+    generateReport({
+      gender,
+      age,
+      income,
+      result: { ...result, suggestions: getSuggestions(gender, age, income) },
+    });
+  };
+
   const allSelected = gender && age && income;
   const selectedCount = [gender, age, income].filter(Boolean).length;
 
@@ -215,12 +226,22 @@ export default function App() {
         {showResult && result && (
           <div ref={resultRef} className="results-container">
 
-            {/* Match banner */}
-            <div className="match-banner">
-              <div className="match-dot" />
-              <span className="match-text">
-                Match: {result.match} · Based on {result.n} respondent{result.n > 1 ? "s" : ""}
-              </span>
+            {/* Match banner + download */}
+            <div className="results-topbar">
+              <div className="match-banner">
+                <div className="match-dot" />
+                <span className="match-text">
+                  Match: {result.match} · Based on {result.n} respondent{result.n > 1 ? "s" : ""}
+                </span>
+              </div>
+              <button onClick={handleDownload} className="btn-download">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="7 10 12 15 17 10"/>
+                  <line x1="12" y1="15" x2="12" y2="3"/>
+                </svg>
+                Download PDF
+              </button>
             </div>
 
             {/* Mode Choice */}
